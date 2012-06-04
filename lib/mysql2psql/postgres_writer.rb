@@ -112,6 +112,7 @@ class Mysql2psql
             row[index] = "%02d:%02d:%02d" % [row[index].hour, row[index].minute, row[index].second]
           rescue
             # Don't fail on nil date/time.
+            row[index] = '\N'
           end
         elsif row[index].is_a?(Mysql::Time)
           row[index] = row[index].to_s.gsub('0000-00-00 00:00', '1970-01-01 00:00')
